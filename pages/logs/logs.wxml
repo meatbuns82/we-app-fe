@@ -1,0 +1,10 @@
+<!--logs.wxml-->
+<view class="logs-page">
+  <view class="log-list">
+    <block wx:for="{{logs}}" wx:key="timeStamp">
+      <view class="log-item">
+        <text>{{date}}</text>
+      </view>
+    </block>
+  </view>
+</view>

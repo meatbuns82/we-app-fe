@@ -1,0 +1,36 @@
+<!-- 详情页 - Modern Minimal -->
+<view class="detail-page">
+  <view class="detail-hero">
+    <image src="{{cookDetail.mainImgPath}}" mode="aspectFill"></image>
+  </view>
+
+  <view class="detail-body">
+    <view wx:if="{{cookDetail.cookDetailName}}" class="detail-title-card">
+      <text class="detail-name">{{cookDetail.cookDetailName}}</text>
+      <text wx:if="{{cookDetail.cookIngredient}}" class="detail-ingredient">{{cookDetail.cookIngredient}}</text>
+    </view>
+
+    <view wx:if="{{cookDetail.usageFee && cookDetail.usageFee.length > 0}}" class="detail-section">
+      <view class="detail-section-title">用料</view>
+      <view class="ingredient-grid">
+        <view wx:for="{{cookDetail.usageFee}}" wx:key="index" wx:for-item="usageFee" class="ingredient-item">
+          <text class="ingredient-name">{{usageFee.usageFeeName}}</text>
+          <text class="ingredient-amount">{{usageFee.usageFeeNum}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{cookDetail.step && cookDetail.step.length > 0}}" class="detail-section">
+      <view class="detail-section-title">烹饪步骤</view>
+      <view wx:for="{{cookDetail.step}}" wx:key="index" wx:for-item="step" class="step-item">
+        <text class="step-num">{{step.num}}</text>
+        <view style="flex:1;">
+          <text class="step-desc">{{step.stepDesc}}</text>
+          <view wx:if="{{step.imgPath}}" class="step-img">
+            <image src="{{step.imgPath}}" mode="widthFix"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

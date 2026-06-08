@@ -1,0 +1,30 @@
+<view class="page-wrap profile-page">
+  <view class="profile-card">
+    <view class="profile-avatar-large">
+      <image wx:if="{{userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text wx:else class="profile-avatar-placeholder">👤</text>
+    </view>
+    <text class="profile-name-large">{{userInfo.nickName || '未登录'}}</text>
+    <text class="profile-desc">一起点菜，好好吃饭</text>
+  </view>
+
+  <view class="profile-menu">
+    <view class="profile-menu-item" bindtap="toMyFavorites">
+      <text class="profile-menu-icon">💕</text>
+      <text class="profile-menu-label">我的收藏</text>
+      <text class="profile-menu-arrow">›</text>
+    </view>
+    <view class="profile-menu-item" bindtap="toMyOrders">
+      <text class="profile-menu-icon">📋</text>
+      <text class="profile-menu-label">我的订单</text>
+      <text class="profile-menu-arrow">›</text>
+    </view>
+    <view class="profile-menu-item" bindtap="toSettings">
+      <text class="profile-menu-icon">⚙️</text>
+      <text class="profile-menu-label">设置</text>
+      <text class="profile-menu-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="profile-footer">Baby Order v1.0</view>
+</view>

@@ -1,0 +1,228 @@
+/* ========================================
+   Warm Calm Design System
+   Colors - Hardcoded values (WXSS-compatible)
+   Primary:   #C97060 Dusty Terracotta
+   Accent:    #A5B8A5 Sage Green
+   BG:        #F3F0EB Warm Cream
+   Surface:   #FFFFFF
+   Text 1:    #2C2C2A
+   Text 2:    #8A847E
+   Text 3:    #B0A8A0
+   Border:    #E2DBD4
+   Divider:   #EDE8E2
+   Radius:    20rpx / 16rpx / 12rpx
+   ======================================== */
+
+/* 全局基础 */
+page {
+  background-color: #F3F0EB;
+  color: #2C2C2A;
+  font-size: 28rpx;
+  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', sans-serif;
+}
+
+/* 页面容器 */
+.page-wrap {
+  min-height: 100vh;
+  background: #F3F0EB;
+}
+
+/* 卡片 */
+.card {
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+}
+
+/* 分割线 */
+.divider {
+  height: 1px;
+  background: #EDE8E2;
+  margin: 0 32rpx;
+}
+
+/* 标签 / Tags */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4rpx 16rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  background: #F1DED9;
+  color: #C97060;
+}
+
+.tag-accent {
+  background: #EBF1E8;
+  color: #A5B8A5;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 160rpx 0 200rpx;
+}
+
+.empty-state-icon {
+  font-size: 80rpx;
+  margin-bottom: 24rpx;
+  opacity: 0.6;
+}
+
+.empty-state-text {
+  font-size: 26rpx;
+  color: #B0A8A0;
+}
+
+/* 按钮基础 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999rpx;
+  transition: all 0.2s ease;
+  font-size: 26rpx;
+  border: none;
+  line-height: 1.2;
+}
+
+.btn:active {
+  opacity: 0.8;
+  transform: scale(0.96);
+}
+
+.btn-primary {
+  background: #C97060 !important;
+  color: #FFFFFF !important;
+  padding: 20rpx 40rpx;
+}
+
+.btn-primary:active {
+  background: #B05A4C !important;
+}
+
+.btn-soft {
+  background: #F1DED9 !important;
+  color: #C97060 !important;
+  padding: 20rpx 40rpx;
+}
+
+.btn-soft:active {
+  background: #C97060 !important;
+  color: #FFFFFF !important;
+}
+
+.btn-outline {
+  background: transparent !important;
+  color: #C97060 !important;
+  border: 2rpx solid #C97060 !important;
+  padding: 18rpx 38rpx;
+}
+
+.btn-sm {
+  padding: 12rpx 28rpx !important;
+  font-size: 24rpx !important;
+}
+
+.btn-xs {
+  padding: 8rpx 20rpx !important;
+  font-size: 22rpx !important;
+}
+
+/* 计数按钮 (+/-) */
+.count-btn {
+  width: 56rpx !important;
+  height: 56rpx !important;
+  line-height: 56rpx !important;
+  text-align: center !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  font-size: 32rpx !important;
+  font-weight: 300 !important;
+  color: #C97060 !important;
+  background: #F1DED9 !important;
+  border: none !important;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.count-btn:active {
+  background: #C97060 !important;
+  color: #FFFFFF !important;
+  transform: scale(0.88);
+}
+
+.count-btn-remove {
+  font-size: 22rpx !important;
+  font-weight: 400 !important;
+  width: auto !important;
+  padding: 0 16rpx !important;
+  border-radius: 999rpx !important;
+  background: #F5F0EB !important;
+  color: #B0A8A0 !important;
+  line-height: 56rpx !important;
+}
+
+/* 删除按钮 (圆形 X) */
+.remove-btn {
+  width: 48rpx !important;
+  height: 48rpx !important;
+  line-height: 48rpx !important;
+  text-align: center !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  font-size: 24rpx !important;
+  font-weight: 300 !important;
+  color: #B0A8A0 !important;
+  background: transparent !important;
+  border: 2rpx solid #E2DBD4 !important;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.remove-btn:active {
+  background: #F1DED9 !important;
+  color: #C97060 !important;
+  border-color: #F1DED9 !important;
+}
+
+/* 徽标 Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36rpx;
+  height: 36rpx;
+  padding: 0 10rpx;
+  font-size: 20rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: #C97060;
+  border-radius: 999rpx;
+  line-height: 1;
+}
+
+/* Section 标题装饰 */
+.section-header {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #2C2C2A;
+  padding: 16rpx 0;
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.section-header::before {
+  content: '';
+  width: 4rpx;
+  height: 20rpx;
+  background: #C97060;
+  border-radius: 2rpx;
+  flex-shrink: 0;
+}

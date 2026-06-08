@@ -1,0 +1,35 @@
+<!-- 购物车 - Warm Calm -->
+<view class="cart-page">
+  <view wx:if="{{orderCookFood.length > 0}}" class="cart-section">
+    <view class="cart-section-title">炒菜</view>
+    <view wx:for="{{orderCookFood}}" wx:key="index" wx:for-item="item" class="cart-item">
+      <view class="cart-img">
+        <image src="{{item.picturePath}}" mode="aspectFill"></image>
+      </view>
+      <view class="cart-info">
+        <text class="cart-name">{{item.cookDetailName}}</text>
+        <text wx:if="{{item.cookIngredient}}" class="cart-desc">{{item.cookIngredient}}</text>
+      </view>
+      <button class="remove-btn" catch:tap="deOrderFood" data-param="{{item}}">✕</button>
+    </view>
+  </view>
+
+  <view wx:if="{{orderHotSpotFood.length > 0}}" class="cart-section">
+    <view class="cart-section-title">🔥 火锅</view>
+    <view wx:for="{{orderHotSpotFood}}" wx:key="index" wx:for-item="item" class="cart-item">
+      <view class="cart-img">
+        <image src="{{item.picturePath}}" mode="aspectFill"></image>
+      </view>
+      <view class="cart-info">
+        <text class="cart-name">{{item.foodName}}</text>
+        <text wx:if="{{item.desc}}" class="cart-desc">{{item.desc}}</text>
+      </view>
+      <button class="remove-btn" catch:tap="deOrderFood" data-param="{{item}}">✕</button>
+    </view>
+  </view>
+
+  <view wx:if="{{orderCookFood.length === 0 && orderHotSpotFood.length === 0}}" class="empty-state">
+    <text class="empty-state-icon">🛒</text>
+    <text class="empty-state-text">购物车空空的</text>
+  </view>
+</view>

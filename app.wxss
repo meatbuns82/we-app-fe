@@ -1,0 +1,19 @@
+/**app.wxss**/
+@import "/dist/style/weui.wxss";
+@import "/icon/iconfont.wxss";
+@import "/styles/warm-theme.wxss";
+
+/* Shake animation for cart badge */
+@keyframes shake {
+  0%, 100% { transform: translateX(0px) translateY(0px); }
+  10% { transform: translateX(-4px) translateY(-1px); }
+  20% { transform: translateX(2px) translateY(1px); }
+  30% { transform: translateX(-4px) translateY(-1px); }
+  40% { transform: translateX(2px) translateY(1px); }
+  50% { transform: translateX(-2px) translateY(0px); }
+  60% { transform: translateX(2px) translateY(0px); }
+  70% { transform: translateX(-2px) translateY(-1px); }
+  80% { transform: translateX(-4px) translateY(1px); }
+  90% { transform: translateX(-2px) translateY(-1px); }
+  100% { transform: translateX(0px) translateY(0px); }
+}

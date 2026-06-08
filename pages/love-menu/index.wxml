@@ -1,0 +1,27 @@
+<!-- 最爱页 - Modern Minimal -->
+<view class="love-page">
+  <view class="love-header">💕 我喜欢吃的</view>
+
+  <view wx:if="{{loveMenus.length === 0}}" class="empty-state">
+    <text class="empty-state-icon">💔</text>
+    <text class="empty-state-text">还没有收藏的菜品</text>
+  </view>
+
+  <scroll-view class="love-list" scroll-y wx:if="{{loveMenus.length > 0}}">
+    <view wx:for="{{loveMenus}}" wx:key="index" wx:for-item="menu" class="love-item">
+      <view class="love-img">
+        <image src="{{menu.picturePath}}" mode="aspectFill"></image>
+      </view>
+      <view class="love-info">
+        <text class="love-name">{{menu.cookDetailName}}</text>
+        <text wx:if="{{menu.foodTypeLabel}}" class="love-tag">{{menu.foodTypeLabel}}</text>
+        <text wx:if="{{menu.desc}}" class="love-desc">{{menu.desc}}</text>
+        <view class="love-actions">
+          <button class="love-btn-remove" bindtap="alterLoveStatus" data-value1="{{menu}}">取消收藏</button>
+          <button class="love-btn-eat" bindtap="toDayWant" data-menu="{{menu}}">今天想吃</button>
+        </view>
+      </view>
+    </view>
+    <view class="love-footer">— 没有了 —</view>
+  </scroll-view>
+</view>

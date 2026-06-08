@@ -1,0 +1,106 @@
+<!-- 首页 - Warm Calm -->
+<view class="home">
+  <!-- 顶部用户区 -->
+  <view class="profile-section">
+    <view class="profile-left">
+      <block wx:if="{{userInfo.avatarUrl}}">
+        <view class="avatar" bindtap="handleAvatarTap">
+          <image src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        </view>
+      </block>
+      <block wx:elif="{{canIUseOpenData}}">
+        <view class="avatar" bindtap="handleAvatarTap">
+          <open-data type="userAvatarUrl"></open-data>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="avatar-placeholder" bindtap="handleAvatarTap">👤</view>
+      </block>
+      <view class="profile-info">
+        <text class="profile-name">{{userInfo.nickName || '未登录'}}</text>
+        <text class="profile-sub">今天想吃什么呢？</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 群组切换 -->
+  <view wx:if="{{groups && groups.length > 0 && groups[currentVisitGroupIndex]}}" class="group-bar-wrap">
+    <view class="group-bar-inner">
+      <view class="group-btn group-btn-left" bind:tap="visitLeftGroup">
+        <text>‹</text>
+      </view>
+      <view class="group-info">
+        <text class="group-name">
+          <text wx:if="{{groups[currentVisitGroupIndex].defaultGroup}}" class="group-default-star">★</text>
+          {{groups[currentVisitGroupIndex].groupName}}
+        </text>
+        <text class="group-index">{{currentVisitGroupIndex + 1}} / {{groups.length}}</text>
+      </view>
+      <view class="group-btn group-btn-right" bind:tap="visitRightGroup">
+        <text>›</text>
+      </view>
+    </view>
+    <!-- 圆点指示器 -->
+    <view class="group-dots" wx:if="{{groups.length > 1}}">
+      <block wx:for="{{groups}}" wx:key="groupCode">
+        <view class="group-dot {{index === currentVisitGroupIndex ? 'group-dot-active' : ''}}"></view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 功能入口 -->
+  <view class="section-title">快速点餐</view>
+  <view class="nav-grid">
+    <view class="nav-item" bindtap="toMenuTap">
+      <text class="nav-icon">🥘</text>
+      <text class="nav-label">菜单</text>
+    </view>
+    <view class="nav-item" bindtap="toHotSpot">
+      <text class="nav-icon">🍲</text>
+      <text class="nav-label">火锅</text>
+    </view>
+    <view class="nav-item" bindtap="toHistoryMenuTap">
+      <text class="nav-icon">💕</text>
+      <text class="nav-label">最爱</text>
+    </view>
+    <view class="nav-item" bindtap="toCurrentDay">
+      <text class="nav-icon">📋</text>
+      <text class="nav-label">今日</text>
+    </view>
+    <view class="nav-item" bindtap="toNewRequireTap">
+      <text class="nav-icon">👤</text>
+      <text class="nav-label">我的</text>
+    </view>
+    <view class="nav-item" open-type="toGroup" bindgetuserinfo="getUserInfo">
+      <text class="nav-icon">👥</text>
+      <text class="nav-label">群组</text>
+    </view>
+  </view>
+
+  <!-- 诗词 -->
+  <view class="motto-section">
+    <text class="motto-text">{{mottoHtml}}</text>
+  </view>
+
+  <!-- 授权弹窗 -->
+  <view wx:if="{{authorDialog || authorDialogShow}}">
+    <view class="weui-mask {{authorDialog ? 'weui-animate_fade-in' : 'weui-animate_fade-out'}}" bindtap="closeAuthorDialog"></view>
+    <view class="weui-half-screen-dialog {{authorDialog ? 'weui-animate_slide-up' : 'weui-animate_slide-down'}}" style="background:#FFFFFF;border-radius:24rpx 24rpx 0 0;">
+      <view class="weui-half-screen-dialog__hd">
+        <view class="weui-half-screen-dialog__hd__side">
+          <view aria-role="button" class="weui-btn_icon weui-wa-hotarea" bindtap="closeAuthorDialog">关闭</view>
+        </view>
+        <view class="weui-half-screen-dialog__hd__main">
+          <strong class="weui-half-screen-dialog__title" style="color:var(--color-text);">授权信息</strong>
+        </view>
+      </view>
+      <view class="weui-half-screen-dialog__bd" style="padding:32rpx;text-align:center;">
+        <text style="color:var(--color-text-secondary);font-size:26rpx;">需要授权获取您的头像、昵称等信息</text>
+        <view style="display:flex;justify-content:center;gap:24rpx;margin-top:48rpx;">
+          <button class="auth-btn-secondary" size="mini" bindgetphonenumber="rejectAuthor">拒绝</button>
+          <button class="auth-btn-primary" size="mini" open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber">授权</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

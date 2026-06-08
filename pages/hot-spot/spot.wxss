@@ -1,0 +1,131 @@
+@import "../../styles/warm-theme.wxss";
+
+/* ===== Hot Spot - Warm Calm ===== */
+.hotspot-page {
+  background: #F3F0EB;
+  min-height: 100vh;
+}
+
+.hotspot-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(243, 240, 235, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 16rpx 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #EDE8E2;
+}
+
+.hotspot-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #A5B8A5;
+}
+
+.hotspot-slogan {
+  text-align: center;
+  padding: 86rpx 32rpx 16rpx;
+  font-size: 22rpx;
+  color: #B0A8A0;
+  letter-spacing: 3rpx;
+}
+
+.hotspot-list {
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.hotspot-list-inner {
+  padding: 0 32rpx 40rpx;
+  box-sizing: border-box;
+}
+
+.hotspot-item {
+  display: flex;
+  gap: 20rpx;
+  padding: 24rpx 0;
+  border-bottom: 1px solid #EDE8E2;
+}
+
+.hotspot-item:last-child {
+  border-bottom: none;
+}
+
+.hotspot-img {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #EDE8E2;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+}
+
+.hotspot-img image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hotspot-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hotspot-name-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.hotspot-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #A5B8A5;
+}
+
+.hotspot-desc {
+  font-size: 22rpx;
+  color: #B0A8A0;
+  margin-top: 6rpx;
+}
+
+.hotspot-count-btn {
+  width: 56rpx !important;
+  height: 56rpx !important;
+  line-height: 56rpx !important;
+  text-align: center !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  font-size: 32rpx !important;
+  font-weight: 300 !important;
+  color: #A5B8A5 !important;
+  background: #EBF1E8 !important;
+  border: none !important;
+  transition: all 0.2s;
+}
+
+.hotspot-count-btn:active {
+  background: #A5B8A5 !important;
+  color: #fff !important;
+  transform: scale(0.9);
+}
+
+/* 加载更多 */
+.load-more {
+  text-align: center;
+  padding: 32rpx 0;
+  color: #B0A8A0;
+  font-size: 24rpx;
+}

@@ -1,0 +1,247 @@
+@import "../../styles/warm-theme.wxss";
+
+/* ===== Home - Warm Calm ===== */
+.home {
+  min-height: 100vh;
+  background: #F3F0EB;
+  padding: 0 32rpx;
+}
+
+/* ===== 顶部用户区 ===== */
+.profile-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx 0 24rpx;
+  margin-top: 16rpx;
+}
+
+.profile-left {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #F1DED9;
+  border: 2rpx solid #F1DED9;
+}
+
+.avatar image {
+  width: 100%;
+  height: 100%;
+}
+
+.avatar-placeholder {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background: #F1DED9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  border: 2rpx solid #F1DED9;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #2C2C2A;
+}
+
+.profile-sub {
+  font-size: 24rpx;
+  color: #B0A8A0;
+  margin-top: 4rpx;
+}
+
+/* ===== 群组切换 ===== */
+.group-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 16rpx 0 8rpx;
+}
+
+.group-bar-inner {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 12rpx 16rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.05);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.group-btn {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  background: #F5F0EB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  color: #C97060;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.group-btn:active {
+  background: #C97060;
+  color: #fff;
+  transform: scale(0.92);
+}
+
+.group-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rpx;
+}
+
+.group-name {
+  font-size: 30rpx;
+  color: #2C2C2A;
+  font-weight: 600;
+  text-align: center;
+  max-width: 280rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.group-default-star {
+  font-size: 24rpx;
+  color: #E8B84B;
+  margin-right: 6rpx;
+  opacity: 1;
+}
+
+.group-index {
+  font-size: 20rpx;
+  color: #C0B8B0;
+  letter-spacing: 2rpx;
+}
+
+.group-dots {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  margin-top: 12rpx;
+}
+
+.group-dot {
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  background: #E0D8D0;
+  transition: all 0.3s;
+}
+
+.group-dot-active {
+  width: 24rpx;
+  border-radius: 10rpx;
+  background: #C97060;
+}
+
+/* ===== Section Title ===== */
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #2C2C2A;
+  padding: 32rpx 0 16rpx;
+}
+
+/* ===== 功能网格 ===== */
+.nav-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20rpx;
+  padding: 8rpx 0 16rpx;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+  padding: 28rpx 0;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+  transition: all 0.2s;
+}
+
+.nav-item:active {
+  transform: scale(0.94);
+  background: #F1DED9;
+}
+
+.nav-icon {
+  font-size: 48rpx;
+  line-height: 1;
+}
+
+.nav-label {
+  font-size: 24rpx;
+  color: #8A847E;
+  font-weight: 500;
+}
+
+/* ===== 诗词 ===== */
+.motto-section {
+  text-align: center;
+  padding: 48rpx 0 60rpx;
+  position: relative;
+}
+
+.motto-section::before {
+  content: '"';
+  display: block;
+  font-size: 48rpx;
+  color: #F1DED9;
+  line-height: 1;
+  margin-bottom: 12rpx;
+  opacity: 0.6;
+}
+
+.motto-text {
+  font-size: 24rpx;
+  color: #B0A8A0;
+  font-style: italic;
+  letter-spacing: 4rpx;
+  line-height: 1.8;
+}
+
+/* ===== 授权弹窗 ===== */
+.auth-btn-primary {
+  background: #C97060 !important;
+  color: #fff !important;
+  border-radius: 999rpx !important;
+  border: none !important;
+  font-size: 26rpx !important;
+}
+
+.auth-btn-secondary {
+  background: #F1DED9 !important;
+  color: #C97060 !important;
+  border-radius: 999rpx !important;
+  border: none !important;
+  font-size: 26rpx !important;
+}

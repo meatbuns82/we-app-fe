@@ -1,0 +1,40 @@
+<!-- 火锅页 - Modern Minimal -->
+<view class="hotspot-page">
+  <view class="hotspot-top">
+    <text class="hotspot-title">🔥 火锅</text>
+    <view style="display:flex;align-items:center;gap:12rpx;">
+      <text wx:if="{{orderCount > 0}}" class="badge">{{orderCount}}</text>
+      <text style="font-size:40rpx;" catch:tap="foodCar">🛒</text>
+    </view>
+  </view>
+
+  <view class="hotspot-slogan">没有什么是一顿火锅解决不了的</view>
+
+  <scroll-view class="hotspot-list" scroll-y bindscrolltolower="showMore">
+    <view class="hotspot-list-inner">
+      <view wx:for="{{foodKind}}" wx:key="index" wx:for-item="food" class="hotspot-item">
+        <view class="hotspot-img">
+          <image src="{{food.imagePath}}" mode="aspectFill"></image>
+        </view>
+        <view class="hotspot-info">
+          <view class="hotspot-name-row">
+            <text class="hotspot-name">{{food.foodName}}</text>
+            <view style="display:flex;gap:8rpx;">
+              <button class="hotspot-count-btn" catch:tap="deOrderFood" data-param="{{food}}" size="mini">−</button>
+              <button class="hotspot-count-btn" catch:tap="orderFood" data-param="{{food}}" size="mini">+</button>
+            </view>
+          </view>
+          <text wx:if="{{food.desc}}" class="hotspot-desc">{{food.desc}}</text>
+        </view>
+      </view>
+
+      <!-- 加载更多提示 -->
+      <view class="load-more" wx:if="{{foodKind.length > 0}}">
+        <text>上拉加载更多</text>
+      </view>
+      <view wx:if="{{foodKind.length === 0}}" class="load-more">
+        <text>暂无火锅食材</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>

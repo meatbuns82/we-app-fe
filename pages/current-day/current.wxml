@@ -1,0 +1,63 @@
+<!-- 今日页 - Modern Minimal -->
+<view class="current-page">
+  <view class="current-header">📋 今天的小菜</view>
+
+  <view wx:if="{{stirFryMenus.length === 0 && hotpotGroupedMenus.length === 0}}" class="empty-state">
+    <text class="empty-state-icon">🍽️</text>
+    <text class="empty-state-text">今天还没点菜呢</text>
+  </view>
+
+  <scroll-view class="current-list" scroll-y wx:if="{{stirFryMenus.length > 0 || hotpotGroupedMenus.length > 0}}">
+    <view class="current-list-inner">
+
+      <!-- ===== 炒菜区 (type=0) ===== -->
+      <view wx:if="{{stirFryMenus.length > 0}}">
+        <view class="section-header">
+          <text class="section-icon">🍳</text>
+          <text class="section-title">炒菜</text>
+          <text class="section-count">{{stirFryMenus.length}}道</text>
+        </view>
+        <view wx:for="{{stirFryMenus}}" wx:key="index" wx:for-item="menu" class="current-item" hover-class="item-hover" hover-stay-time="100">
+          <view class="current-img">
+            <image src="{{menu.picturePath}}" mode="aspectFill"></image>
+          </view>
+          <view class="current-info">
+            <view class="current-name-row">
+              <text class="current-name">{{menu.cookDetailName}}</text>
+              <button class="current-remove-btn" bindtap="toDayWant" data-menu="{{menu}}">不吃了</button>
+            </view>
+            <text wx:if="{{menu.foodTypeLabel}}" class="current-tag">{{menu.foodTypeLabel}}</text>
+            <text wx:if="{{menu.desc}}" class="current-desc">{{menu.desc}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- ===== 火锅区 (type=1)，按 foodKind 分组 ===== -->
+      <view wx:if="{{hotpotGroupedMenus.length > 0}}">
+        <view class="section-header">
+          <text class="section-icon">🔥</text>
+          <text class="section-title">火锅</text>
+          <text class="section-count">{{hotpotCount}}道</text>
+        </view>
+        <view wx:for="{{hotpotGroupedMenus}}" wx:key="kindName" wx:for-item="group">
+          <view class="kind-header">{{group.kindName}}</view>
+          <view wx:for="{{group.items}}" wx:key="index" wx:for-item="menu" class="current-item" hover-class="item-hover" hover-stay-time="100">
+            <view class="current-img">
+              <image src="{{menu.picturePath}}" mode="aspectFill"></image>
+            </view>
+            <view class="current-info">
+              <view class="current-name-row">
+                <!-- 火锅用 foodName 显示 -->
+                <text class="current-name">{{menu.foodName}}</text>
+                <button class="current-remove-btn" bindtap="toDayWant" data-menu="{{menu}}">不吃了</button>
+              </view>
+              <text wx:if="{{menu.foodTypeLabel}}" class="current-tag">{{menu.foodTypeLabel}}</text>
+              <text wx:if="{{menu.desc}}" class="current-desc">{{menu.desc}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </scroll-view>
+</view>

@@ -1,0 +1,21 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/menu/menu",
+    "pages/love-menu/index",
+    "pages/new-require/index",
+    "pages/foodDetail/detail",
+    "pages/hot-spot/spot",
+    "pages/foodCar/car",
+    "pages/current-day/current"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#F3F0EB",
+    "navigationBarTitleText": "一起点菜",
+    "navigationBarTextStyle":"black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

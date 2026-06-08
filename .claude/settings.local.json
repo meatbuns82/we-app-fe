@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(impeccable)",
+      "Bash(node *)",
+      "Read(//c/Users/13976/.claude/skills/impeccable/scripts/**)",
+      "Read(//c/Users/13976/.claude/skills/impeccable/**)"
+    ]
+  }
+}

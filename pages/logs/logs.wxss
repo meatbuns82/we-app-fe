@@ -1,0 +1,21 @@
+@import "../../styles/warm-theme.wxss";
+
+.logs-page {
+  background: #F3F0EB;
+  min-height: 100vh;
+  padding: 32rpx;
+}
+
+.log-list {
+  padding: 0;
+}
+
+.log-item {
+  padding: 16rpx 20rpx;
+  background: #FFFFFF;
+  border-radius: 12rpx;
+  margin-bottom: 10rpx;
+  color: #8A847E;
+  font-size: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+}

@@ -1,0 +1,149 @@
+@import "../../styles/warm-theme.wxss";
+
+/* ===== Detail - Warm Calm ===== */
+.detail-page {
+  background: #F3F0EB;
+  min-height: 100vh;
+  padding-bottom: 48rpx;
+}
+
+.detail-hero {
+  width: 100%;
+  height: 400rpx;
+  overflow: hidden;
+  background: #EDE8E2;
+}
+
+.detail-hero image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.detail-body {
+  padding: 0 32rpx;
+  margin-top: -24rpx;
+  position: relative;
+  z-index: 2;
+}
+
+.detail-title-card {
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  padding: 32rpx 28rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+}
+
+.detail-name {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #2C2C2A;
+  text-align: center;
+}
+
+.detail-ingredient {
+  text-align: center;
+  color: #B0A8A0;
+  font-size: 24rpx;
+  margin-top: 12rpx;
+}
+
+.detail-section {
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+}
+
+.detail-section-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #2C2C2A;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.detail-section-title::before {
+  content: '';
+  width: 4rpx;
+  height: 20rpx;
+  background: #C97060;
+  border-radius: 2rpx;
+}
+
+.ingredient-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.ingredient-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12rpx 24rpx;
+  background: #F1DED9;
+  border-radius: 12rpx;
+  min-width: 100rpx;
+}
+
+.ingredient-name {
+  font-size: 24rpx;
+  color: #2C2C2A;
+}
+
+.ingredient-amount {
+  font-size: 22rpx;
+  color: #B0A8A0;
+  margin-top: 4rpx;
+}
+
+.step-item {
+  display: flex;
+  gap: 20rpx;
+  padding: 20rpx 0;
+  border-bottom: 1px solid #EDE8E2;
+}
+
+.step-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.step-num {
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  background: #C97060;
+  color: #fff;
+  font-size: 20rpx;
+  font-weight: 600;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4rpx;
+}
+
+.step-desc {
+  flex: 1;
+  font-size: 26rpx;
+  color: #2C2C2A;
+  line-height: 1.6;
+}
+
+.step-img {
+  width: 100%;
+  border-radius: 12rpx;
+  margin-top: 12rpx;
+  overflow: hidden;
+}
+
+.step-img image {
+  width: 100%;
+  display: block;
+}

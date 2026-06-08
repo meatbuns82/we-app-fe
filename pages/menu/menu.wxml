@@ -1,0 +1,111 @@
+<!-- 菜单页 - Modern Minimal -->
+<view class="menu-page">
+  <!-- 顶部工具栏 -->
+  <view class="menu-top">
+    <view class="menu-filter-btn" bindtap="sift">☰ 筛选</view>
+    <text class="menu-filter-info" wx:if="{{selectdFoodType || selectedFoodKind.foodName}}">
+      {{selectdFoodType}}{{selectedFoodKind.foodName ? '/' + selectedFoodKind.foodName : ''}}
+    </text>
+    <view class="menu-search">
+      <input bindinput="searchByInput" placeholder="搜索菜品" />
+    </view>
+    <view class="menu-cart-btn" bind:tap="foodCar">
+      <text wx:if="{{orderCount > 0}}" class="badge" style="position:absolute;top:-4rpx;right:-8rpx;">{{orderCount}}</text>
+      🛒
+    </view>
+  </view>
+
+  <!-- 菜品列表 -->
+  <scroll-view class="dish-list" scroll-y bindscrolltolower="showMore">
+    <view class="dish-list-inner">
+      <view wx:for="{{menus}}" wx:key="index" wx:for-item="menu">
+        <navigator url="/pages/foodDetail/detail?cookCode={{menu.cookCode}}"
+          class="dish-item"
+          bind:longpress="longPressFood" data-param="{{menu}}">
+          <view class="dish-img">
+            <image src="{{menu.picturePath}}" mode="aspectFill"></image>
+          </view>
+          <view class="dish-info">
+            <view>
+              <view class="dish-name-row">
+                <view>
+                  <text class="dish-name">{{menu.cookDetailName}}</text>
+                  <text wx:if="{{menu.foodTypeLabel}}" class="dish-tag">{{menu.foodTypeLabel}}</text>
+                </view>
+                <view class="dish-actions">
+                  <button class="count-btn" catch:tap="deOrderFood" data-param="{{menu}}" size="mini">−</button>
+                  <button wx:if="{{!orderFood[menu.cookCode]}}" class="count-btn" catch:tap="orderFood" data-param="{{menu}}" size="mini">+</button>
+                  <button wx:else class="count-btn count-btn-remove" catch:tap="deOrderFood" data-param="{{menu}}" size="mini">移除</button>
+                </view>
+              </view>
+              <view class="dish-stats">
+                <text class="dish-stat">👍 {{menu.goodCount || 0}}</text>
+                <text class="dish-stat">👎 {{menu.badCount || 0}}</text>
+                <text class="dish-stat">💖 {{menu.collectCount || 0}}</text>
+              </view>
+            </view>
+            <view>
+              <text wx:if="{{menu.cookIngredient}}" class="dish-ingredient">{{menu.cookIngredient}}</text>
+              <text class="dish-longpress-hint">长按操作</text>
+            </view>
+          </view>
+        </navigator>
+      </view>
+
+      <view class="load-more" wx:if="{{menus.length > 0}}">
+        <text>上拉加载更多</text>
+      </view>
+      <view class="load-more" wx:if="{{menus.length === 0}}">
+        <text>暂无菜品</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 筛选弹窗 -->
+  <view wx:if="{{dialog || dialogShow}}">
+    <view class="weui-mask {{dialog ? 'weui-animate_fade-in' : 'weui-animate_fade-out'}}" bindtap="close"></view>
+    <view class="weui-half-screen-dialog filter-sheet {{dialog ? 'weui-animate_slide-up' : 'weui-animate_slide-down'}}">
+      <view class="weui-half-screen-dialog__hd">
+        <view class="weui-half-screen-dialog__hd__side">
+          <view aria-role="button" class="weui-btn_icon weui-wa-hotarea" bindtap="close">关闭</view>
+        </view>
+        <view class="weui-half-screen-dialog__hd__main">
+          <strong class="weui-half-screen-dialog__title" style="color:var(--color-text);">筛选菜品</strong>
+        </view>
+      </view>
+      <view class="weui-half-screen-dialog__bd" style="padding:24rpx 32rpx 48rpx;">
+        <view style="background:var(--color-primary-light);border-radius:16rpx;padding:8rpx;">
+          <view style="display:flex;align-items:center;padding:16rpx;">
+            <text style="color:var(--color-text-secondary);font-size:26rpx;width:100rpx;">菜类</text>
+            <picker bindchange="foodTypeChange" range="{{foodTypes}}" value="{{pickerFoodType}}">
+              <view style="color:var(--color-text);">{{foodTypes[pickerFoodType] || '请选择'}}</view>
+            </picker>
+          </view>
+          <view style="display:flex;align-items:center;padding:16rpx;border-top:1px solid rgba(255,255,255,0.6);">
+            <text style="color:var(--color-text-secondary);font-size:26rpx;width:100rpx;">原料</text>
+            <picker bindchange="foodKindChange" range="{{foodKinds}}" value="{{pcikerBindFoodKind}}" range-key="foodName">
+              <view style="color:var(--color-text);">{{foodKinds[pcikerBindFoodKind].foodName || '请选择'}}</view>
+            </picker>
+          </view>
+        </view>
+        <view style="display:flex;justify-content:flex-end;gap:20rpx;margin-top:32rpx;">
+          <view class="btn btn-sm btn-soft" bindtap="clearSift">清除</view>
+          <view class="btn btn-sm btn-primary" bindtap="confirmSift">确认</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 长按操作弹窗 -->
+  <view wx:if="{{operateFoodDialog}}" catchtouchmove="preventTouchMove">
+    <view class="weui-mask" bindtap="closeOperateFoodDialog"></view>
+    <view class="weui-dialog action-dialog">
+      <view class="weui-dialog__bd">
+        <button class="action-btn" bind:tap="operatFood" data-param="good">👍</button>
+        <button class="action-btn" bind:tap="operatFood" data-param="bad">👎</button>
+        <button class="action-btn" bind:tap="operatFood" data-param="collect">💖</button>
+      </view>
+      <view class="action-hint">对这道菜的感觉</view>
+    </view>
+  </view>
+</view>
