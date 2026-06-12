@@ -8,7 +8,8 @@
     "pages/foodDetail/detail",
     "pages/hot-spot/spot",
     "pages/foodCar/car",
-    "pages/current-day/current"
+    "pages/current-day/current",
+    "pages/group/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

@@ -21,7 +21,8 @@
             <text class="hotspot-name">{{food.foodName}}</text>
             <view style="display:flex;gap:8rpx;">
               <button class="hotspot-count-btn" catch:tap="deOrderFood" data-param="{{food}}" size="mini">−</button>
-              <button class="hotspot-count-btn" catch:tap="orderFood" data-param="{{food}}" size="mini">+</button>
+              <button wx:if="{{!orderFood[food.foodCode]}}" class="hotspot-count-btn" catch:tap="orderFood" data-param="{{food}}" size="mini">+</button>
+              <button wx:else class="hotspot-count-btn hotspot-remove-btn" catch:tap="deOrderFood" data-param="{{food}}" size="mini">移除</button>
             </view>
           </view>
           <text wx:if="{{food.desc}}" class="hotspot-desc">{{food.desc}}</text>

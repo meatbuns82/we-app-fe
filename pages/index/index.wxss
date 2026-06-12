@@ -207,26 +207,84 @@
 /* ===== 诗词 ===== */
 .motto-section {
   text-align: center;
-  padding: 48rpx 0 60rpx;
+  padding: 56rpx 0 60rpx;
   position: relative;
 }
 
+/* 上方的装饰花体 */
 .motto-section::before {
-  content: '"';
+  content: '✦';
   display: block;
-  font-size: 48rpx;
-  color: #F1DED9;
+  font-size: 28rpx;
+  background: linear-gradient(135deg, #C97060, #E8B84B, #8BA4C7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   line-height: 1;
-  margin-bottom: 12rpx;
-  opacity: 0.6;
+  margin-bottom: 8rpx;
+  opacity: 0.7;
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+/* 两侧的装饰线 */
+.motto-section::after {
+  content: '';
+  display: block;
+  width: 120rpx;
+  height: 2rpx;
+  background: linear-gradient(90deg, transparent, rgba(201,112,96,0.25), transparent);
+  margin: 20rpx auto 0;
+  border-radius: 2rpx;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
 }
 
 .motto-text {
-  font-size: 24rpx;
-  color: #B0A8A0;
+  font-size: 26rpx;
   font-style: italic;
   letter-spacing: 4rpx;
-  line-height: 1.8;
+  line-height: 1.9;
+  transition: opacity 0.4s ease;
+  animation: mottoFloat 4s ease-in-out infinite;
+  /* 渐变彩色文字 */
+  background: linear-gradient(135deg, #C97060 0%, #D4A070 40%, #E8B84B 70%, #8BA4C7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 500;
+  text-shadow: none;
+  position: relative;
+  display: inline;
+  padding: 0 10rpx;
+}
+
+/* 淡出 — 浮动 animation 不受影响，只变透明度 */
+.motto-text.fade-out {
+  opacity: 0;
+}
+
+/* 淡入 */
+.motto-text.fade-in {
+  opacity: 1;
+}
+
+/* 持续飘动效果 */
+@keyframes mottoFloat {
+  0%, 100% {
+    transform: translateY(0rpx) translateX(0rpx);
+  }
+  25% {
+    transform: translateY(-4rpx) translateX(3rpx);
+  }
+  50% {
+    transform: translateY(0rpx) translateX(0rpx);
+  }
+  75% {
+    transform: translateY(3rpx) translateX(-2rpx);
+  }
 }
 
 /* ===== 授权弹窗 ===== */

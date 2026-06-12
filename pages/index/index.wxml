@@ -71,7 +71,7 @@
       <text class="nav-icon">👤</text>
       <text class="nav-label">我的</text>
     </view>
-    <view class="nav-item" open-type="toGroup" bindgetuserinfo="getUserInfo">
+    <view class="nav-item" bindtap="toGroupTap">
       <text class="nav-icon">👥</text>
       <text class="nav-label">群组</text>
     </view>
@@ -79,7 +79,7 @@
 
   <!-- 诗词 -->
   <view class="motto-section">
-    <text class="motto-text">{{mottoHtml}}</text>
+    <text class="motto-text {{mottoAnimClass}}">{{mottoHtml}}</text>
   </view>
 
   <!-- 授权弹窗 -->

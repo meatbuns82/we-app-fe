@@ -11,7 +11,7 @@ Page({
   },
 
   infinityScrollDown(){
-    _this.setData({
+    this.setData({
       page: this.data.page + 1
     })
   },

@@ -24,7 +24,7 @@ Page({
     isCollect:false,
     isGood:true,
     isBad:false,
-    LOG_PREFIX: "index: "
+    LOG_PREFIX: "menu: "
   },
   operatFood(e){
       console.log(this.data.LOG_PREFIX, e.currentTarget.dataset.param)
@@ -36,7 +36,7 @@ Page({
       }else if(op == "bad"){
         api = "/cook/collect/bad"
       }else if(op == "collect"){
-        api = "/cook/collect/ "
+        api = "/cook/collect/"
       }
       app.request(api, {
         "cookCode":this.data.operateFood.cookCode,
@@ -161,25 +161,18 @@ Page({
       filePath: relateiveFilePath,
       data: arrayBuffer,
       encoding: 'binary', // 注意设置编码为 binary
-      success: function () {
-        console.log(this.data.LOG_PREFIX, 'Base64 data saved to file:', filePath);
+      success: () => {
+        console.log(this.data.LOG_PREFIX, 'Base64 data saved to file:', relateiveFilePath);
       },
-      fail: function (err) {
+      fail: (err) => {
         console.error(this.data.LOG_PREFIX, 'Failed to save base64 data to file:', err);
       }
     });
     return relateiveFilePath
   },
-  // 将 base64 字符串转换为 ArrayBuffer
+  // 将 base64 字符串转换为 ArrayBuffer（微信小程序兼容）
   base64ToArrayBuffer: function (base64) {
-    const binaryStr = window.atob(base64);
-    const len = binaryStr.length;
-    const buffer = new ArrayBuffer(len);
-    const view = new Uint8Array(buffer);
-    for (let i = 0; i < len; i++) {
-      view[i] = binaryStr.charCodeAt(i);
-    }
-    return buffer;
+    return wx.base64ToArrayBuffer(base64);
   },
   isNull(e){
       if(e == null || e == undefined){

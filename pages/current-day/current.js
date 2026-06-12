@@ -1,23 +1,26 @@
 const app = getApp()
 Page({
   data:{
-      loveMenus:[],
-      stirFryMenus:[],
-      hotpotGroupedMenus:[],
-      hotpotCount:0,
-      orderMenus:[
-      ],
-      LOG_PREFIX: "current_day "
-  },
-  onLoad(){
-    let _this = this
-    _this.loadOrderMenus()
+    loveMenus:[],
+    stirFryMenus:[],
+    hotpotGroupedMenus:[],
+    hotpotCount:0,
+    todayDate:'',
+    LOG_PREFIX: "current_day "
   },
 
-  infinityScrollDown(){
-    _this.setData({
-      page: this.data.page + 1
+  onLoad(){
+    // 格式化今日日期
+    const d = new Date()
+    const y = d.getFullYear()
+    const m = String(d.getMonth() + 1).padStart(2, '0')
+    const day = String(d.getDate()).padStart(2, '0')
+    const weekdays = ['日', '一', '二', '三', '四', '五', '六']
+    const w = weekdays[d.getDay()]
+    this.setData({
+      todayDate: `${y}年${m}月${day}日 星期${w}`
     })
+    this.loadOrderMenus()
   },
 
   loadOrderMenus(){

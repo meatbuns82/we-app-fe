@@ -122,6 +122,17 @@
   transform: scale(0.9);
 }
 
+.hotspot-remove-btn {
+  font-size: 22rpx !important;
+  font-weight: 400 !important;
+  width: auto !important;
+  padding: 0 16rpx !important;
+  border-radius: 999rpx !important;
+  background: #F5F0EB !important;
+  color: #B0A8A0 !important;
+  line-height: 56rpx !important;
+}
+
 /* 加载更多 */
 .load-more {
   text-align: center;

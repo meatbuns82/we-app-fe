@@ -1,0 +1,179 @@
+<!-- 群组 + 全屏聊天 - Warm Calm -->
+<view class="group-page">
+  <!-- ===== 全屏聊天面板 ===== -->
+  <view class="chat-panel">
+    <!-- 无群组占位 -->
+    <view wx:if="{{!currentGroup}}" class="chat-empty">
+      <view class="chat-empty-menu" bindtap="toggleGroupDrawer">
+        <text>☰</text>
+      </view>
+      <view class="chat-empty-box">
+        <text class="chat-empty-icon">💬</text>
+        <text class="chat-empty-text">选择一个群组开始聊天</text>
+      </view>
+    </view>
+
+    <!-- 聊天界面 -->
+    <view wx:else class="chat-container">
+      <!-- 聊天头部 -->
+      <view class="chat-header">
+        <view class="chat-header-left">
+          <view class="chat-menu-btn" bindtap="toggleGroupDrawer"
+                style="background:{{currentGroup.avatarColor || '#C97060'}};">
+            <text>{{currentGroup.avatarLetter || '☰'}}</text>
+          </view>
+          <view class="chat-header-info">
+            <text class="chat-header-name">{{currentGroup.groupName || '群聊'}}</text>
+            <text class="chat-header-meta">{{currentGroup.memberCount || '...'}} 位成员</text>
+          </view>
+        </view>
+        <view class="chat-header-actions">
+          <view class="chat-header-btn" bindtap="showGroupInfo">
+            <text>⋯</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 消息列表 -->
+      <scroll-view class="chat-messages" scroll-y enhanced show-scrollbar="{{false}}"
+                   scroll-into-view="{{scrollToId}}" scroll-with-animation="{{true}}"
+                   bindscrolltoupper="loadMoreMessages">
+        <view class="chat-load-more" wx:if="{{hasMoreMessages}}">
+          <text class="chat-load-more-text" bindtap="loadMoreMessages">加载更多消息</text>
+        </view>
+
+        <view wx:for="{{messages}}" wx:key="msgId" id="msg-{{item.msgId}}">
+          <!-- 时间分隔线 -->
+          <view class="chat-time-divider" wx:if="{{item.showTime}}">
+            <text class="chat-time-text">{{item.timeStr}}</text>
+          </view>
+
+          <!-- 他人消息：头像左 气泡右 -->
+          <view wx:if="{{!item.isSelf}}" class="chat-msg chat-msg-other">
+            <view class="chat-msg-avatar" style="background:{{item.avatarColor || '#C97060'}};">
+              <text class="chat-msg-avatar-letter">{{item.avatarLetter || '?'}}</text>
+            </view>
+            <view class="chat-msg-body">
+              <text class="chat-msg-name">{{item.senderName}}</text>
+              <view class="chat-msg-bubble chat-msg-bubble-other">
+                <text>{{item.content}}</text>
+              </view>
+              <text class="chat-msg-time">{{item.timeLabel}}</text>
+            </view>
+          </view>
+
+          <!-- 自己消息：气泡左 头像右 -->
+          <view wx:else class="chat-msg chat-msg-self">
+            <view class="chat-msg-body">
+              <view class="chat-msg-bubble chat-msg-bubble-self">
+                <text>{{item.content}}</text>
+              </view>
+              <text class="chat-msg-time">{{item.timeLabel}}</text>
+            </view>
+            <view class="chat-msg-avatar" style="background:{{item.avatarColor || '#C97060'}};">
+              <text class="chat-msg-avatar-letter">{{item.avatarLetter || '我'}}</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 空消息 -->
+        <view wx:if="{{messages.length === 0}}" class="chat-messages-empty">
+          <text class="chat-messages-empty-text">暂无消息，发送第一条吧 💭</text>
+        </view>
+      </scroll-view>
+
+      <!-- 输入区 -->
+      <view class="chat-input-area">
+        <input class="chat-input" type="text" placeholder="说点什么..."
+               value="{{inputText}}" bindinput="onInputText"
+               placeholder-class="chat-input-placeholder"
+               confirm-type="send" bindconfirm="sendMessage" />
+        <view class="chat-send-btn {{inputText.trim() ? 'chat-send-btn-active' : ''}}"
+              bindtap="sendMessage">
+          <text>发送</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- ===== 抽屉遮罩 ===== -->
+<view wx:if="{{showGroupDrawer}}" class="drawer-mask" bindtap="closeGroupDrawer"></view>
+
+<!-- ===== 群组列表抽屉 ===== -->
+<view wx:if="{{showGroupDrawer}}" class="drawer">
+  <view class="drawer-header">
+    <text class="drawer-title">群组</text>
+    <view class="drawer-add" bindtap="showJoinGroup">
+      <text class="drawer-add-icon">+</text>
+    </view>
+  </view>
+
+  <view class="join-group-area {{showJoinInput ? 'join-group-area-expand' : ''}}">
+    <input class="join-group-input" placeholder="输入群组码加入"
+           value="{{joinGroupCode}}" bindinput="onJoinCodeInput"
+           placeholder-class="join-group-placeholder" />
+    <view class="join-group-btn" bindtap="joinGroup">
+      <text>加入</text>
+    </view>
+  </view>
+
+  <scroll-view class="group-list" scroll-y enhanced show-scrollbar="{{false}}">
+    <view wx:for="{{groups}}" wx:key="groupCode"
+          class="group-card {{groupCode === currentGroupCode ? 'group-card-active' : ''}}"
+          bindtap="switchGroup" data-group="{{item}}"
+          bindlongpress="showGroupActions" data-group="{{item}}">
+      <view class="group-card-left">
+        <view class="group-avatar" style="background:{{item.avatarColor}};">
+          <text class="group-avatar-text">{{item.avatarLetter}}</text>
+        </view>
+        <view class="group-card-info">
+          <view class="group-card-top">
+            <text class="group-card-name">{{item.groupName || '未命名群组'}}</text>
+            <text wx:if="{{item.defaultGroup}}" class="group-pin-tag">置顶</text>
+          </view>
+          <text class="group-card-meta">{{item.memberCount || 1}} 位成员</text>
+        </view>
+      </view>
+      <view wx:if="{{item.defaultGroup}}" class="group-pin-star">📌</view>
+    </view>
+
+    <view wx:if="{{groups.length === 0}}" class="drawer-empty">
+      <text class="drawer-empty-icon">👥</text>
+      <text class="drawer-empty-text">还没有群组</text>
+      <text class="drawer-empty-sub">点击右上角 + 加入群组</text>
+    </view>
+  </scroll-view>
+</view>
+
+<!-- ===== 群组操作弹出菜单 ===== -->
+<view wx:if="{{groupActionSheet}}" class="action-sheet-mask" bindtap="closeGroupActions" catchtouchmove="preventTouchMove">
+  <view class="action-sheet" catchtap="stopPropagation">
+    <view class="action-sheet-title">
+      <text>{{actionGroup.groupName || '群组操作'}}</text>
+    </view>
+    <view class="action-sheet-item" wx:if="{{!actionGroup.defaultGroup}}" bindtap="pinGroup">
+      <text class="action-sheet-icon">📌</text>
+      <text>置顶群组</text>
+    </view>
+    <view class="action-sheet-item" wx:if="{{actionGroup.defaultGroup}}" bindtap="unpinGroup">
+      <text class="action-sheet-icon">📍</text>
+      <text>取消置顶</text>
+    </view>
+    <view class="action-sheet-item action-sheet-danger" bindtap="leaveGroup">
+      <text class="action-sheet-icon">🚪</text>
+      <text>退出群组</text>
+    </view>
+    <view class="action-sheet-cancel" bindtap="closeGroupActions">
+      <text>取消</text>
+    </view>
+  </view>
+</view>
+
+<!-- ===== Toast ===== -->
+<view wx:if="{{toast.show}}" class="toast-mask">
+  <view class="toast-box">
+    <text class="toast-icon">{{toast.icon}}</text>
+    <text class="toast-text">{{toast.text}}</text>
+  </view>
+</view>
